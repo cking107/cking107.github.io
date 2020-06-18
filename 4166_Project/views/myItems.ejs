@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Music Collection</title>
+  <link rel="stylesheet" href="/assets/stylesheets/myItems.css">
+</head>
+
+<body>
+  <% include partials/header.ejs %>
+  <% include partials/user-navigation.ejs %>
+  <% include partials/site-navigation.ejs %>
+  <td id="content">
+
+    <h1>Your profile</h1>
+    <% if(typeof data == "undefined") { %>
+    <p>Your profile is empty.</p>
+    <% } else { %>
+    <table class="borderlines">
+        <tr class="borderlines">
+            <th class="borderlines">Item</th>
+            <th class="borderlines">Category</th>
+            <th class="borderlines">Rating</th>
+            <th class="borderlines">Listened</th>
+            <th class="borderlines">Update/Delete</th>
+        </tr>
+
+        <% for(let i = 0; i < data.length; i++) { %>
+        <tr class="borderlines">
+            <td class="borderlines"><%= data[i].item.itemName %></td>
+            <td class="borderlines"><%= data[i].item.catalogCategory %></td>
+
+            <td class="borderlines"><%= data[i].rating %></td>
+            <td class="borderlines"><%= data[i].listened %></td>
+
+            <td class="borderlines">
+                <form action="profile" method="post">
+                    <% for(let j = 0; j < data.length; j++) { %>
+                    <input type="hidden" name="itemList" value="<%= data[j].item.itemCode %>" />
+                    <% } %>
+                    <input type="hidden" name="itemCode" value="<%= data[i].item.itemCode %>" />
+
+                    <button type="submit" class="submitButton" name="action" value="updateProfile">Update</button>
+                    <button type="submit" class="submitButton" name="action" value="delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+    <% } %>
+
+    <!--
+    <h1>Cameron's Music Collection</h1><br>
+    <table class="musictable">
+      <tr class="musictable">
+        <th class="musictable">Music</th>
+        <th class="musictable">Type</th>
+        <th class="musictable">Genre</th>
+        <th class="musictable">Rating</th>
+        <th class="musictable">Edit</th>
+      </tr>
+      <tr class="musictable">
+        <td class="musictable">OK Computer</td>
+        <td class="musictable">Album</td>
+        <td class="musictable">Alternative Rock</td>
+        <td class="musictable">10</td>
+        <td class="musictable">
+          <form action="/feedback" id="update">
+            <input type="submit" name="update" value="Update" class="buttons">
+          </form>
+          <form action="/myItems" id="delete">
+            <input type="submit" name="delete" value="Delete" class="buttons">
+          </form>
+        </td>
+      </tr>
+    </table>
+    <p>Click <a href="/categories">here</a> to go back to the catalog.</p>
+  -->
+  </td>
+  <% include partials/footer.ejs %>
+</body>
+
+</html>
