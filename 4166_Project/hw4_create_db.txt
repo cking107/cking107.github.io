@@ -1,4 +1,0 @@
-use music
-db.createCollection('items');
-db.createCollection('users');
-db.items.insert({itemCode: 1, itemName: "OK Computer",  artist: "Radiohead", type: "Album", catalogCategory: "Alternative Rock", rating: "10", description: "OK Computer is Radiohead's third studio album. Released in 1997, this is album has made a big impact on music as a whole. Radiohead's style has bled into the alternative rock genre because of infulence from OK Computer.", imageURL: "/assets/images/okcomputer.jpg"});
